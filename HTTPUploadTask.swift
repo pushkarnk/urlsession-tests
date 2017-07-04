@@ -17,12 +17,13 @@ class HTTPUploadTask: XCTestCase {
         let uploadDataExpectation = expectation(description: "Upload data to http://posttestserver.com")
         var fileData: Data!
         do {
-            fileData =  try Data(contentsOf: URL(fileURLWithPath: "/root/pushkar/urlsession-tests/README.md"))
+            fileData =  try Data(contentsOf: URL(fileURLWithPath: "./README.md"))
         } catch {} 
 
         let task = session.uploadTask(with: request, from: fileData) { _, response, error in
             XCTAssertNotNil(response)
             XCTAssertNil(error)
+            //TODO: assert response code is 200
             uploadDataExpectation.fulfill()
         }
 
