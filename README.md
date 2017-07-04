@@ -1,4 +1,4 @@
-#URLSession Regression Test-suite
+URLSession Regression Test-suite
 
 1. DataTask with a completion handler
 2. DataTask with a delegate
@@ -9,7 +9,7 @@
 ...
 
 
-##TODOs
+TODOs
 1. Identify more tests scenarios (keep adding to the list above)
 2. Use swift-package-manager ?
-
+3. Run the JustHTTP/Cloudant here?
