@@ -1,3 +1,9 @@
+Instructions
+Right now, to run these tests on Linux:
+1. Clone the project
+2. Run swiftc \*.swift
+3. Run ./main
+
 URLSession Regression Test-suite
 
 1. DataTask with a completion handler
