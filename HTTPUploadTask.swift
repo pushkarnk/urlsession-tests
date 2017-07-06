@@ -32,7 +32,7 @@ class HTTPUploadTask: XCTestCase {
         }
 
         task.resume()
-        waitForExpectations(timeout: 10)
+        waitForExpectations(timeout: 20)
     }
 
     func testUploadWithDelegate() {
@@ -50,7 +50,7 @@ class HTTPUploadTask: XCTestCase {
 
         let task = session.uploadTask(with: request, from: fileData)
         task.resume()
-        waitForExpectations(timeout: 10)
+        waitForExpectations(timeout: 20)
     }
 }
 

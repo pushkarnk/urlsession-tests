@@ -23,7 +23,7 @@ class HTTPDataTask: XCTestCase {
             completionExpectation.fulfill()
         }
         task.resume()
-        waitForExpectations(timeout: 10)
+        waitForExpectations(timeout: 20)
     }
 
     func testSimpleGetCallWithDelegate() {
@@ -33,7 +33,7 @@ class HTTPDataTask: XCTestCase {
         delegate.didReceiveResponseExpectation = expectation(description: "HTTP response received")
         let task = session.dataTask(with: request)
         task.resume()
-        waitForExpectations(timeout: 10)
+        waitForExpectations(timeout: 20)
     }
 }
 

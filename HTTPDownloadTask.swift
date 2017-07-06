@@ -20,7 +20,7 @@ public class HTTPDownloadTask: XCTestCase {
             downloadCompleteExpectation.fulfill()
         }
         task.resume()
-        waitForExpectations(timeout: 10)
+        waitForExpectations(timeout: 20)
     } 
 
     func testDownloadWithDelegate() {
@@ -29,7 +29,7 @@ public class HTTPDownloadTask: XCTestCase {
         delegate.downloadCompletedExpectation = expectation(description: "Downloading https://swift.org/LICENSE.txt")
         let task = session.downloadTask(with: request)
         task.resume()
-        waitForExpectations(timeout: 10)    
+        waitForExpectations(timeout: 20)
     }
 }
 
