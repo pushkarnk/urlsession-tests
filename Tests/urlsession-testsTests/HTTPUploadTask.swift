@@ -19,10 +19,7 @@ class HTTPUploadTask: XCTestCase {
         request.httpMethod = "POST" //the service allows only POST ;(
         
         let uploadDataExpectation = expectation(description: "Upload data to http://posttestserver.com")
-        var fileData: Data!
-        do {
-            fileData =  try Data(contentsOf: URL(fileURLWithPath: "./README.md"))
-        } catch {} 
+        let fileData = Data(count: 2048)
 
         let task = session.uploadTask(with: request, from: fileData) { _, response, error in
             XCTAssertNotNil(response)
@@ -43,11 +40,7 @@ class HTTPUploadTask: XCTestCase {
         delegate.responseReceivedExpectation = expectation(description: "Upload data to http://posttestserver.com")
         delegate.uploadCompletedExpectation = expectation(description: "Upload data to http://posttestserver.com")
 
-        var fileData: Data!
-        do {
-            fileData =  try Data(contentsOf: URL(fileURLWithPath: "./README.md"))
-        } catch {}
-
+        let fileData = Data(count: 2048)
         let task = session.uploadTask(with: request, from: fileData)
         task.resume()
         waitForExpectations(timeout: 20)
@@ -74,7 +67,7 @@ extension HTTPUploadDelegate: URLSessionDataDelegate {
     }
 
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        XCTAssertEqual(data.count, Int(totalBytesSent))
+        XCTAssertEqual(self.totalBytesSent, 2048)
         uploadCompletedExpectation.fulfill()
     }
 }

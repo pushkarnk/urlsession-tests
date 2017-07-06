@@ -47,7 +47,7 @@ extension HTTPDelegate: URLSessionDataDelegate {
         didReceiveExpectation.fulfill()
     }
 
-   public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive: URLResponse, completionHandler: (URLSession.ResponseDisposition) -> Void) {
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
        didReceiveResponseExpectation.fulfill()
        completionHandler(.allow)
    }

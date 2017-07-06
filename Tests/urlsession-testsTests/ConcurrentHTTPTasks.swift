@@ -29,10 +29,7 @@ class ConcurrentHTTPTasks: XCTestCase {
         var uploadRequest = URLRequest(url: URL(string: "http://posttestserver.com/post.php")!)
         uploadRequest.httpMethod = "POST"
 
-        var fileData: Data!
-        do {
-            fileData =  try Data(contentsOf: URL(fileURLWithPath: "./README.md"))
-        } catch {}
+        let fileData = Data(count: 4096)
 
         let uploadTask = session.uploadTask(with: uploadRequest, from: fileData) { _, response, error in
             XCTAssertNotNil(response)
