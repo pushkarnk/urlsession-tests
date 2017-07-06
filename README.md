@@ -1,8 +1,7 @@
 Instructions
-Right now, to run these tests on Linux:
-1. Clone the project
-2. Run swiftc \*.swift
-3. Run ./main
+1. git clone https://github.com/pushkarnk/urlsession-tests
+2. cd urlsession-tests
+3. swift test
 
 URLSession Regression Test-suite
 
