@@ -63,7 +63,9 @@ class ConcurrentHTTPTasks: XCTestCase {
 
         concurrentTasksDelegate.dataCompletionExpectation = expectation(description: "Data task http://httpbin.org/get")
         concurrentTasksDelegate.downloadCompletionExpectation = expectation(description: "Downloading https://swift.org/LICENSE.txt")
+        concurrentTasksDelegate.dataCompletionExpectation.expectedFulfillmentCount = 2
         concurrentTasksDelegate.uploadCompletionExpectation = expectation(description: "Uploading to http://posttestserver.com/post.php")
+        concurrentTasksDelegate.uploadCompletionExpectation.expectedFulfillmentCount = 2
 
         dataTask.resume()
         downloadTask.resume()
