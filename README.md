@@ -11,7 +11,8 @@ URLSession Regression Test-suite
 4. DownloadTask with a delegate
 5. UploadTask with a completion handler
 6. UploadTask with a delegate 
-...
+7. Concurrent tasks - 3, 30, 300, 3000
+8. HTTP/0.9 responses (need to find a test server)
 
 
 TODOs
