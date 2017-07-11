@@ -1,5 +1,6 @@
 import Foundation
 import XCTest
+import Dispatch
 
 public class TaskManagement: XCTestCase {
     
@@ -15,14 +16,12 @@ public class TaskManagement: XCTestCase {
 
         let dataRequest = URLRequest(url: URL(string: "http://httpbin.org/get")!)
         let dataTask = session.dataTask(with: dataRequest)
-        let dataTask0 = session.dataTask(with: dataRequest)
 
         delegate.dataCompletionExpectation = expectation(description: "Data task http://httpbin.org/get")
         delegate.finishTasksExpectation = expectation(description: "Finished tasks for current session")
 
         dataTask.resume()
         session.finishTasksAndInvalidate()
-        dataTask0.resume()
 
         waitForExpectations(timeout: 20)
     }
@@ -31,11 +30,12 @@ public class TaskManagement: XCTestCase {
 class TaskManagementDelegate: NSObject {
     var dataCompletionExpectation: XCTestExpectation!
     var finishTasksExpectation: XCTestExpectation!
+    var dataTask0: URLSessionDataTask!
 }
 
 extension TaskManagementDelegate: URLSessionDelegate { 
     func urlSession(_ session: URLSession, didBecomeInvalidWithError error: Error?) {
-        finishTasksExpectation.fulfill()        
+        finishTasksExpectation.fulfill()
     }
 }
 
