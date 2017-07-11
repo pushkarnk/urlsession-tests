@@ -6,4 +6,6 @@ XCTMain([
     testCase(HTTPDownloadTask.allTests),
     testCase(HTTPUploadTask.allTests),
     testCase(ConcurrentHTTPTasks.allTests),
+    testCase(TaskManagement.allTests),
+
 ])

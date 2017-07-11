@@ -8,7 +8,8 @@ class ConcurrentHTTPTasks: XCTestCase {
 
     static var allTests: [(String, (ConcurrentHTTPTasks) -> () throws -> Void)] {
         return [("testConcurrentTasksWithHandlers", testConcurrentTasksWithHandlers),
-                ("testConcurrentTasksWithDelegates", testConcurrentTasksWithDelegates)]
+                //("testConcurrentTasksWithDelegates", testConcurrentTasksWithDelegates),
+               ]
     }
     
     func testConcurrentTasksWithHandlers() {
