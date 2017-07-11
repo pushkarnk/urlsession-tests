@@ -63,9 +63,7 @@ class ConcurrentHTTPTasks: XCTestCase {
 
         concurrentTasksDelegate.dataCompletionExpectation = expectation(description: "Data task http://httpbin.org/get")
         concurrentTasksDelegate.downloadCompletionExpectation = expectation(description: "Downloading https://swift.org/LICENSE.txt")
-        concurrentTasksDelegate.dataCompletionExpectation.expectedFulfillmentCount = 2
         concurrentTasksDelegate.uploadCompletionExpectation = expectation(description: "Uploading to http://posttestserver.com/post.php")
-        concurrentTasksDelegate.uploadCompletionExpectation.expectedFulfillmentCount = 2
 
         dataTask.resume()
         downloadTask.resume()
@@ -81,12 +79,17 @@ class ConcurrentTasksDelegate: NSObject {
     var uploadCompletionExpectation: XCTestExpectation!
 }
 
-extension ConcurrentTasksDelegate: URLSessionDataDelegate, URLSessionDownloadDelegate {
+extension ConcurrentTasksDelegate: URLSessionDataDelegate {
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        uploadCompletionExpectation?.fulfill()
-        dataCompletionExpectation?.fulfill()
+        if dataTask is URLSessionUploadTask {
+            uploadCompletionExpectation?.fulfill()
+        } else {
+            dataCompletionExpectation?.fulfill()
+        }
     }  
-    
+}
+
+extension ConcurrentTasksDelegate: URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         downloadCompletionExpectation?.fulfill()
     }
