@@ -40,7 +40,7 @@ class HTTPUploadTask: XCTestCase {
         delegate.responseReceivedExpectation = expectation(description: "Upload data to http://posttestserver.com")
         delegate.uploadCompletedExpectation = expectation(description: "Upload data to http://posttestserver.com")
 
-        let fileData = Data(count: 2048)
+        let fileData = Data(count: 48*1024)
         let task = session.uploadTask(with: request, from: fileData)
         task.resume()
         waitForExpectations(timeout: 20)
@@ -67,7 +67,7 @@ extension HTTPUploadDelegate: URLSessionDataDelegate {
     }
 
     func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        XCTAssertEqual(self.totalBytesSent, 2048)
+        XCTAssertEqual(self.totalBytesSent, 48*1024)
         uploadCompletedExpectation.fulfill()
     }
 }
